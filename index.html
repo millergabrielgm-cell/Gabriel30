@@ -28,145 +28,168 @@
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .rsvp-btn { transition: all 0.2; border: 1px solid rgba(255, 255, 255, 0.1); }
-        .rsvp-btn.active-yes { background: rgba(217, 119, 6, 0.2); border-color: #d97706; color: #fbbf24; }
-        .rsvp-btn.active-no { background: rgba(239, 68, 68, 0.1); border-color: #ef4444; color: #f87171; }
+        .rsvp-btn { transition: all 0.2s; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .active-yes { background: rgba(217, 119, 6, 0.2) !important; border-color: #d97706 !important; color: #fbbf24 !important; }
+        .active-no { background: rgba(239, 68, 68, 0.1) !important; border-color: #ef4444 !important; color: #f87171 !important; }
+        
+        @keyframes check-pop {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+        .animate-check { animation: check-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
 
-    <div class="max-w-md w-full glass-card rounded-[2rem] overflow-hidden shadow-2xl">
+    <div class="max-w-md w-full glass-card rounded-[2.5rem] overflow-hidden shadow-2xl">
         <!-- Banner -->
         <div class="h-44 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&q=80&w=800');">
-            <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center">
+            <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-center">
                 <h1 class="font-serif text-5xl font-bold gold-text italic">G30</h1>
                 <p class="text-[10px] tracking-[0.4em] uppercase text-slate-500 mt-2 italic">The Celebration</p>
             </div>
         </div>
 
         <!-- Conteúdo -->
-        <div class="p-8 space-y-8">
-            <div class="text-center space-y-2">
-                <h2 class="text-2xl font-serif">Você foi convocado</h2>
-                <p class="text-slate-400 font-light text-sm text-center">Belmonte do Touring | 28/02 às 17h</p>
-            </div>
-
-            <!-- Formulário RSVP -->
-            <div id="form-ui" class="space-y-5">
-                <div class="space-y-2 text-left">
-                    <label class="text-[10px] uppercase text-slate-500 ml-1 tracking-widest">Nome Completo</label>
-                    <input type="text" id="guestName" placeholder="Seu nome aqui..." 
-                           class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 outline-none focus:border-amber-500 transition-all text-white">
+        <div class="p-8 space-y-8 min-h-[420px] flex flex-col justify-center text-center">
+            
+            <div id="main-ui" class="space-y-8">
+                <div class="space-y-2">
+                    <h2 class="text-2xl font-serif text-white">Você foi convocado</h2>
+                    <p class="text-slate-400 font-light text-sm">Belmonte do Touring | 28/02 às 17h</p>
                 </div>
 
-                <div class="flex gap-2">
-                    <button id="yBtn" onclick="setOpt(true)" class="rsvp-btn flex-1 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest bg-white/5">eu aceito a convocação</button>
-                    <button id="nBtn" onclick="setOpt(false)" class="rsvp-btn flex-1 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest bg-white/5 text-slate-500">resignar</button>
-                </div>
+                <!-- Formulário -->
+                <div class="space-y-5">
+                    <div class="space-y-2 text-left">
+                        <label class="text-[10px] uppercase text-slate-500 ml-1 tracking-widest font-bold">Nome Completo</label>
+                        <input type="text" id="guestName" placeholder="Seu nome aqui" 
+                               class="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-4 outline-none focus:border-amber-500 transition-all text-white placeholder:text-slate-700">
+                    </div>
 
-                <button id="submitBtn" onclick="submitData()" class="btn-gold w-full py-5 rounded-2xl font-bold uppercase tracking-widest text-xs shadow-lg">
-                    Confirmar na Lista
-                </button>
+                    <div class="flex gap-2">
+                        <button id="yBtn" onclick="window.selectRSVP(true)" class="rsvp-btn flex-1 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest bg-white/5">eu aceito a convocação</button>
+                        <button id="nBtn" onclick="window.selectRSVP(false)" class="rsvp-btn flex-1 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest bg-white/5 text-slate-500">resignar</button>
+                    </div>
+
+                    <button id="submitBtn" onclick="window.confirmPresence()" class="btn-gold w-full py-5 rounded-2xl font-bold uppercase tracking-widest text-xs shadow-lg">
+                        Confirmar na Lista
+                    </button>
+                </div>
             </div>
 
-            <!-- Mensagem de Sucesso -->
-            <div id="success-ui" class="hidden py-10 text-center space-y-4">
-                <div class="w-12 h-12 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto">✓</div>
-                <h3 class="text-xl font-serif">Confirmado!</h3>
-                <p class="text-slate-400 text-sm">Sua presença está salva na lista.</p>
+            <!-- Sucesso (✓) -->
+            <div id="success-ui" class="hidden space-y-4 py-10">
+                <div class="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto text-4xl animate-check border-2 border-green-500/30">✓</div>
+                <h3 class="text-xl font-serif text-white">Presença Registada</h3>
+                <p class="text-slate-400 text-sm">O seu nome já está na lista oficial</p>
             </div>
         </div>
 
-        <!-- Rodapé / Painel Administrativo -->
+        <!-- Acesso Gabriel -->
         <div class="p-4 bg-black/20 text-center border-t border-white/5">
-            <button onclick="viewList()" class="text-[9px] text-slate-600 uppercase tracking-widest hover:text-amber-500 transition-colors">
+            <button onclick="window.openAdmin()" class="text-[9px] text-slate-600 uppercase tracking-widest hover:text-amber-500 transition-colors">
                 [ Acesso do Gabriel ]
             </button>
         </div>
     </div>
 
-    <!-- Lista de Convidados (Painel Admin) -->
+    <!-- Lista de Convidados -->
     <div id="admin-panel" class="hidden max-w-md w-full glass-card rounded-3xl p-6 mt-6 shadow-2xl mb-10">
         <div class="flex justify-between items-center border-b border-white/10 pb-4 mb-4">
             <h3 class="font-serif text-lg gold-text">Lista de Convidados</h3>
             <button onclick="document.getElementById('admin-panel').classList.add('hidden')" class="text-slate-500 text-xs">FECHAR</button>
         </div>
         <div id="guest-list" class="space-y-2 max-h-64 overflow-y-auto pr-2 text-sm text-left">
-            <!-- Dados serão inseridos aqui -->
+            <!-- Nomes -->
         </div>
     </div>
 
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
-        import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
+        import { getAuth, signInAnonymously, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
         import { getFirestore, collection, addDoc, getDocs, query, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
 
-        let db, appId, isAttending = null;
+        let db, auth, appId, user = null;
+        let isAttending = null;
 
-        // Inicialização do Firebase
+        // 1. Inicialização blindada
         try {
             const firebaseConfig = JSON.parse(__firebase_config);
             appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
             const app = initializeApp(firebaseConfig);
-            const auth = getAuth(app);
+            auth = getAuth(app);
             db = getFirestore(app);
-            signInAnonymously(auth);
-        } catch (e) { console.warn("Firebase Offline"); }
 
-        // Definir opção de presença
-        window.setOpt = (val) => {
+            onAuthStateChanged(auth, (u) => { user = u; });
+            signInAnonymously(auth).catch(e => console.warn("Firebase Auth Offline"));
+        } catch (e) { console.error("Firebase falhou ao iniciar"); }
+
+        // 2. Funções globais para resposta instantânea
+        window.selectRSVP = (val) => {
             isAttending = val;
             document.getElementById('yBtn').className = val ? 'rsvp-btn flex-1 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest active-yes' : 'rsvp-btn flex-1 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest bg-white/5';
             document.getElementById('nBtn').className = !val ? 'rsvp-btn flex-1 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest active-no' : 'rsvp-btn flex-1 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest bg-white/5 text-slate-500';
         };
 
-        // Submeter dados para a base de dados
-        window.submitData = async () => {
+        window.confirmPresence = async () => {
             const name = document.getElementById('guestName').value.trim();
             const btn = document.getElementById('submitBtn');
-            if(!name || isAttending === null) return alert("Preencha o seu nome e selecione uma opção.");
+
+            if(!name || isAttending === null) {
+                alert("Por favor, preencha o seu nome e selecione uma opção");
+                return;
+            }
 
             try {
-                btn.disabled = true; btn.innerText = "A GUARDAR...";
+                btn.disabled = true;
+                btn.innerText = "A GUARDAR...";
+
+                if (!user) await signInAnonymously(auth);
+
+                // Gravação direta na base de dados
                 await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'guests'), {
-                    name, attending: isAttending, date: serverTimestamp()
+                    name,
+                    attending: isAttending,
+                    createdAt: serverTimestamp()
                 });
-                document.getElementById('form-ui').classList.add('hidden');
+
+                document.getElementById('main-ui').classList.add('hidden');
                 document.getElementById('success-ui').classList.remove('hidden');
+
             } catch (e) {
-                alert("Erro ao ligar ao servidor. Tente novamente.");
-                btn.disabled = false; btn.innerText = "Confirmar na Lista";
+                console.error(e);
+                btn.disabled = false;
+                btn.innerText = "Confirmar na Lista";
+                alert("Erro ao conectar. Por favor, tente no seu link oficial do GitHub.");
             }
         };
 
-        // Visualizar lista de convidados
-        window.viewList = async () => {
+        window.openAdmin = async () => {
             const pass = prompt("Palavra-passe:");
-            if(pass !== "30anos") return alert("Palavra-passe errada.");
+            if(pass !== "30anos") return alert("Acesso negado");
             
             const panel = document.getElementById('admin-panel');
             const listDiv = document.getElementById('guest-list');
             panel.classList.remove('hidden');
-            listDiv.innerHTML = "A carregar...";
+            listDiv.innerHTML = "A carregar lista...";
 
             try {
                 const snap = await getDocs(query(collection(db, 'artifacts', appId, 'public', 'data', 'guests')));
-                let html = "";
                 let guests = [];
                 snap.forEach(d => guests.push(d.data()));
-                
-                // Ordenar por nome em memória
                 guests.sort((a,b) => a.name.localeCompare(b.name));
                 
+                let html = "";
                 guests.forEach(g => {
-                    const color = g.attending ? 'text-amber-500' : 'text-red-500';
-                    html += `<div class="flex justify-between p-3 bg-white/5 rounded-lg border border-white/5">
-                        <span class="truncate">${g.name}</span>
-                        <span class="text-[9px] font-bold ${color}">${g.attending ? 'VAI' : 'NÃO'}</span>
+                    const statusColor = g.attending ? 'text-amber-500' : 'text-red-500';
+                    html += `<div class="flex justify-between p-3 bg-white/5 rounded-xl border border-white/10 mb-2">
+                        <span class="truncate text-slate-200">${g.name}</span>
+                        <span class="text-[9px] font-bold ${statusColor}">${g.attending ? 'VAI' : 'NÃO'}</span>
                     </div>`;
                 });
-                listDiv.innerHTML = html || "Nenhuma confirmação ainda.";
-            } catch (e) { listDiv.innerHTML = "Erro ao carregar a lista."; }
+                listDiv.innerHTML = html || "Nenhuma confirmação ainda";
+            } catch (e) { listDiv.innerHTML = "Erro ao carregar lista"; }
         };
     </script>
 </body>
