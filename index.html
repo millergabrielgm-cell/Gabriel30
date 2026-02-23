@@ -32,21 +32,32 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
+        .custom-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #d97706;
+            border-radius: 10px;
+        }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
+<body class="min-h-screen flex flex-col items-center justify-center p-4 space-y-6">
 
-    <div class="max-w-md w-full glass-card rounded-3xl overflow-hidden shadow-2xl">
-        <!-- Header Image Area -->
-        <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&q=80&w=800');">
+    <!-- Card Principal -->
+    <div class="max-w-md w-full glass-card rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+        <!-- Área da Imagem -->
+        <div class="h-48 bg-cover bg-center relative shrink-0" style="background-image: url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&q=80&w=800');">
             <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center">
                 <h1 class="font-serif text-5xl font-bold gold-gradient italic">G30</h1>
                 <p class="text-sm tracking-[0.3em] uppercase mt-2">The Celebration</p>
             </div>
         </div>
 
-        <!-- Content -->
-        <div class="p-8 space-y-8">
+        <!-- Conteúdo -->
+        <div class="p-8 space-y-8 flex-1">
             <div class="text-center space-y-2">
                 <h2 class="text-2xl font-serif">Você foi convocado.</h2>
                 <p class="text-slate-400 font-light leading-relaxed">
@@ -54,9 +65,9 @@
                 </p>
             </div>
 
-            <!-- Event Details -->
-            <div class="grid grid-cols-1 gap-4">
-                <div class="flex items-center space-x-4 p-3 rounded-xl bg-white/5">
+            <!-- Detalhes do Evento -->
+            <div class="grid grid-cols-1 gap-4 text-left">
+                <div class="flex items-center space-x-4 p-3 rounded-xl bg-white/5 border border-white/5">
                     <div class="bg-amber-500/20 p-2 rounded-lg text-amber-500">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -64,11 +75,11 @@
                     </div>
                     <div>
                         <p class="text-xs uppercase tracking-wider text-slate-500">Data</p>
-                        <p class="font-semibold">28 de Fevereiro</p>
+                        <p class="font-semibold text-white">28 de Fevereiro</p>
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-4 p-3 rounded-xl bg-white/5">
+                <div class="flex items-center space-x-4 p-3 rounded-xl bg-white/5 border border-white/5">
                     <div class="bg-amber-500/20 p-2 rounded-lg text-amber-500">
                         <svg xmlns="http://www.w3.org/2000/center" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -76,11 +87,11 @@
                     </div>
                     <div>
                         <p class="text-xs uppercase tracking-wider text-slate-500">Horário</p>
-                        <p class="font-semibold">17:00 Horas</p>
+                        <p class="font-semibold text-white">17:00 Horas</p>
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-4 p-3 rounded-xl bg-white/5">
+                <div class="flex items-center space-x-4 p-3 rounded-xl bg-white/5 border border-white/5">
                     <div class="bg-amber-500/20 p-2 rounded-lg text-amber-500">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -89,7 +100,7 @@
                     </div>
                     <div>
                         <p class="text-xs uppercase tracking-wider text-slate-500">Local</p>
-                        <p class="font-semibold">Belmonte do Touring</p>
+                        <p class="font-semibold text-white">Belmonte do Touring</p>
                     </div>
                 </div>
             </div>
@@ -98,7 +109,7 @@
             <div id="rsvp-section" class="space-y-4 border-t border-white/10 pt-6">
                 <h3 class="text-lg font-serif text-center">R.S.V.P</h3>
                 
-                <div class="space-y-2">
+                <div class="space-y-2 text-left">
                     <label class="text-xs text-slate-400 uppercase tracking-widest ml-1">Seu Nome</label>
                     <input type="text" id="guestName" placeholder="Ex: João Silva" 
                            class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:border-amber-500 transition-colors">
@@ -109,32 +120,80 @@
                     <button onclick="setRsvp(false)" id="btnNo" class="flex-1 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition-colors">Não poderei ir</button>
                 </div>
 
-                <button onclick="sendConfirmation()" class="w-full btn-gold text-slate-900 font-bold py-4 rounded-xl shadow-lg uppercase tracking-widest text-sm mt-4">
+                <button id="submitBtn" onclick="handleConfirmation()" class="w-full btn-gold text-slate-900 font-bold py-4 rounded-xl shadow-lg uppercase tracking-widest text-sm mt-4">
                     Confirmar Presença
                 </button>
             </div>
 
-            <div id="success-msg" class="hidden text-center py-8 space-y-3 animate-bounce">
+            <div id="success-msg" class="hidden text-center py-8 space-y-3">
                 <div class="bg-green-500/20 text-green-500 w-12 h-12 rounded-full flex items-center justify-center mx-auto">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                     </svg>
                 </div>
-                <p class="text-lg font-semibold">Tudo pronto!</p>
-                <p class="text-slate-400 text-sm">Sua resposta foi enviada.</p>
+                <p class="text-lg font-semibold text-white">Tudo pronto!</p>
+                <p class="text-slate-400 text-sm">Sua resposta foi salva na lista do Gabriel.</p>
             </div>
         </div>
 
-        <div class="p-4 bg-white/5 text-center">
+        <!-- Footer com Painel Administrativo Embutido -->
+        <div class="bg-white/5 p-4 border-t border-white/10 text-center space-y-3">
             <p class="text-[10px] text-slate-500 tracking-[0.2em] uppercase">Gabriel | 30 Anos</p>
+            
+            <!-- Botão de Acesso (Dento do card para garantir visibilidade) -->
+            <button onclick="toggleAdminPanel()" class="mx-auto flex items-center space-x-1 text-[9px] text-slate-600 uppercase tracking-widest hover:text-amber-500 transition-colors opacity-50 hover:opacity-100">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <span>Acesso do Gabriel</span>
+            </button>
         </div>
     </div>
 
-    <script>
-        let isAttending = null;
-        const myPhoneNumber = "5521965588222"; 
+    <!-- Lista de Convidados (Painel de Gestão) -->
+    <div id="admin-panel" class="hidden max-w-md w-full glass-card rounded-3xl p-6 space-y-4 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-300">
+        <div class="flex justify-between items-center border-b border-white/10 pb-4">
+            <h3 class="font-serif text-xl gold-gradient">Gestão de Convidados</h3>
+            <button onclick="toggleAdminPanel()" class="text-slate-500 hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        
+        <div id="guest-list-container" class="space-y-3 max-h-72 overflow-y-auto custom-scroll pr-2">
+            <p class="text-center text-slate-500 text-sm py-8">Carregando lista...</p>
+        </div>
 
-        function setRsvp(status) {
+        <div class="pt-4 border-t border-white/10 flex justify-between text-xs font-bold uppercase tracking-widest">
+            <span class="text-green-500" id="count-yes">Sim: 0</span>
+            <span class="text-red-500" id="count-no">Não: 0</span>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
+        import { getAuth, signInAnonymously, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc, getDocs, query, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
+
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let user = null;
+        let isAttending = null;
+
+        const initAuth = async () => {
+            try { await signInAnonymously(auth); } catch (e) { console.error(e); }
+        };
+
+        onAuthStateChanged(auth, (u) => { user = u; });
+        initAuth();
+
+        window.setRsvp = (status) => {
             isAttending = status;
             const btnYes = document.getElementById('btnYes');
             const btnNo = document.getElementById('btnNo');
@@ -146,41 +205,104 @@
                 btnNo.classList.add('bg-red-500/20', 'border-red-500', 'text-red-500');
                 btnYes.classList.remove('bg-amber-500/20', 'border-amber-500', 'text-amber-500');
             }
-        }
+        };
 
-        function sendConfirmation() {
+        window.handleConfirmation = async () => {
             const name = document.getElementById('guestName').value.trim();
+            const btn = document.getElementById('submitBtn');
 
-            if (!name) {
-                alertBox("Por favor, digite seu nome.");
-                return;
+            if (!name) { alertBox("Digite o seu nome."); return; }
+            if (isAttending === null) { alertBox("Selecione se irá."); return; }
+            if (!user) { alertBox("Conectando..."); return; }
+
+            try {
+                btn.disabled = true;
+                btn.innerText = "A guardar...";
+
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'guests'), {
+                    name: name,
+                    attending: isAttending,
+                    createdAt: serverTimestamp()
+                });
+
+                document.getElementById('rsvp-section').classList.add('hidden');
+                document.getElementById('success-msg').classList.remove('hidden');
+                if (!document.getElementById('admin-panel').classList.contains('hidden')) loadGuestList();
+
+            } catch (error) {
+                btn.disabled = false;
+                btn.innerText = "Confirmar Presença";
+                alertBox("Erro ao guardar.");
             }
+        };
 
-            if (isAttending === null) {
-                alertBox("Por favor, selecione se você irá ou não.");
-                return;
+        window.toggleAdminPanel = async () => {
+            const panel = document.getElementById('admin-panel');
+            if (panel.classList.contains('hidden')) {
+                const pass = prompt("Palavra-passe do Gabriel:");
+                if (pass === "30anos") {
+                    panel.classList.remove('hidden');
+                    loadGuestList();
+                    panel.scrollIntoView({ behavior: 'smooth' });
+                } else if (pass !== null) {
+                    alert("Acesso negado.");
+                }
+            } else {
+                panel.classList.add('hidden');
             }
+        };
 
-            const response = isAttending ? "CONFIRMO minha presença" : "infelizmente NÃO PODEREI ir";
-            const message = `Olá Gabriel! Aqui é o *${name}*. Passando para dizer que ${response} ao seu aniversário de 30 anos no Belmonte do Touring! 🥂`;
-            
-            const url = `https://api.whatsapp.com/send?phone=${myPhoneNumber}&text=${encodeURIComponent(message)}`;
-            
-            document.getElementById('rsvp-section').classList.add('hidden');
-            document.getElementById('success-msg').classList.remove('hidden');
+        async function loadGuestList() {
+            const container = document.getElementById('guest-list-container');
+            if (!user) return;
 
-            setTimeout(() => {
-                window.open(url, '_blank');
-            }, 1000);
+            try {
+                const q = query(collection(db, 'artifacts', appId, 'public', 'data', 'guests'));
+                const querySnapshot = await getDocs(q);
+                
+                let html = "";
+                let countYes = 0;
+                let countNo = 0;
+                const guests = [];
+
+                querySnapshot.forEach((doc) => { guests.push(doc.data()); });
+                guests.sort((a, b) => a.name.localeCompare(b.name));
+
+                if (guests.length === 0) {
+                    container.innerHTML = '<p class="text-center text-slate-500 py-8 italic">A lista está vazia.</p>';
+                    return;
+                }
+
+                guests.forEach((data) => {
+                    const statusClass = data.attending ? 'text-green-500' : 'text-red-500';
+                    const statusText = data.attending ? 'VAI' : 'NÃO VAI';
+                    if (data.attending) countYes++; else countNo++;
+
+                    html += `
+                        <div class="flex justify-between items-center p-3 bg-white/5 rounded-xl border border-white/5">
+                            <span class="font-medium text-white truncate mr-2">${data.name}</span>
+                            <span class="text-[10px] font-bold ${statusClass}">${statusText}</span>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+                document.getElementById('count-yes').innerText = `Sim: ${countYes}`;
+                document.getElementById('count-no').innerText = `Não: ${countNo}`;
+
+            } catch (error) {
+                container.innerHTML = '<p class="text-center text-red-500 py-8">Erro de ligação.</p>';
+            }
         }
 
         function alertBox(msg) {
             const nameInput = document.getElementById('guestName');
+            const old = nameInput.placeholder;
             nameInput.placeholder = msg;
             nameInput.classList.add('border-red-500');
             setTimeout(() => {
                 nameInput.classList.remove('border-red-500');
-                nameInput.placeholder = "Ex: João Silva";
+                nameInput.placeholder = old;
             }, 3000);
         }
     </script>
