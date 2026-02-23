@@ -9,8 +9,9 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #121212; /* Cinza escuro chumbo */
+            background-color: #121212; /* Cinza chumbo */
             color: #f8fafc;
+            -webkit-tap-highlight-color: transparent;
         }
         .font-serif {
             font-family: 'Playfair Display', serif;
@@ -22,10 +23,11 @@
         }
         .btn-gold {
             background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-            transition: transform 0.2s ease;
+            transition: all 0.2s ease;
         }
         .btn-gold:active {
-            transform: scale(0.95);
+            transform: scale(0.96);
+            filter: brightness(1.1);
         }
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
@@ -42,13 +44,26 @@
             background: #d97706;
             border-radius: 10px;
         }
+        /* Estilos para estados ativos dos botões RSVP */
+        .btn-rsvp {
+            transition: all 0.2s ease;
+        }
+        .btn-rsvp-active-yes {
+            background-color: rgba(245, 158, 11, 0.2) !important;
+            border-color: #f59e0b !important;
+            color: #f59e0b !important;
+        }
+        .btn-rsvp-active-no {
+            background-color: rgba(239, 68, 68, 0.2) !important;
+            border-color: #ef4444 !important;
+            color: #ef4444 !important;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4 space-y-6">
 
-    <!-- Card Principal -->
     <div class="max-w-md w-full glass-card rounded-3xl overflow-hidden shadow-2xl flex flex-col">
-        <!-- Área da Imagem -->
+        <!-- Header -->
         <div class="h-48 bg-cover bg-center relative shrink-0" style="background-image: url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&q=80&w=800');">
             <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center">
                 <h1 class="font-serif text-5xl font-bold gold-gradient italic">G30</h1>
@@ -56,7 +71,7 @@
             </div>
         </div>
 
-        <!-- Conteúdo -->
+        <!-- Content -->
         <div class="p-8 space-y-8 flex-1">
             <div class="text-center space-y-2">
                 <h2 class="text-2xl font-serif">Você foi convocado.</h2>
@@ -65,7 +80,7 @@
                 </p>
             </div>
 
-            <!-- Detalhes do Evento -->
+            <!-- Details -->
             <div class="grid grid-cols-1 gap-4 text-left">
                 <div class="flex items-center space-x-4 p-3 rounded-xl bg-white/5 border border-white/5">
                     <div class="bg-amber-500/20 p-2 rounded-lg text-amber-500">
@@ -112,12 +127,12 @@
                 <div class="space-y-2 text-left">
                     <label class="text-xs text-slate-400 uppercase tracking-widest ml-1">Seu Nome</label>
                     <input type="text" id="guestName" placeholder="Ex: João Silva" 
-                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:border-amber-500 transition-colors">
+                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:border-amber-500 transition-colors text-white">
                 </div>
 
                 <div class="flex space-x-2">
-                    <button onclick="setRsvp(true)" id="btnYes" class="flex-1 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition-colors">Sim, irei!</button>
-                    <button onclick="setRsvp(false)" id="btnNo" class="flex-1 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition-colors">Não poderei ir</button>
+                    <button id="btnYes" onclick="setRsvp(true)" class="btn-rsvp flex-1 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition-colors">Sim, irei!</button>
+                    <button id="btnNo" onclick="setRsvp(false)" class="btn-rsvp flex-1 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition-colors">Não poderei ir</button>
                 </div>
 
                 <button id="submitBtn" onclick="handleConfirmation()" class="w-full btn-gold text-slate-900 font-bold py-4 rounded-xl shadow-lg uppercase tracking-widest text-sm mt-4">
@@ -136,12 +151,10 @@
             </div>
         </div>
 
-        <!-- Footer com Painel Administrativo Embutido -->
+        <!-- Footer -->
         <div class="bg-white/5 p-4 border-t border-white/10 text-center space-y-3">
             <p class="text-[10px] text-slate-500 tracking-[0.2em] uppercase">Gabriel | 30 Anos</p>
-            
-            <!-- Botão de Acesso (Dento do card para garantir visibilidade) -->
-            <button onclick="toggleAdminPanel()" class="mx-auto flex items-center space-x-1 text-[9px] text-slate-600 uppercase tracking-widest hover:text-amber-500 transition-colors opacity-50 hover:opacity-100">
+            <button onclick="toggleAdminPanel()" class="mx-auto flex items-center space-x-1 text-[9px] text-slate-600 uppercase tracking-widest hover:text-amber-500 transition-colors opacity-60">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
@@ -150,21 +163,19 @@
         </div>
     </div>
 
-    <!-- Lista de Convidados (Painel de Gestão) -->
-    <div id="admin-panel" class="hidden max-w-md w-full glass-card rounded-3xl p-6 space-y-4 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-300">
+    <!-- Admin Panel -->
+    <div id="admin-panel" class="hidden max-w-md w-full glass-card rounded-3xl p-6 space-y-4 mb-12 shadow-2xl">
         <div class="flex justify-between items-center border-b border-white/10 pb-4">
             <h3 class="font-serif text-xl gold-gradient">Gestão de Convidados</h3>
-            <button onclick="toggleAdminPanel()" class="text-slate-500 hover:text-white transition-colors">
+            <button onclick="toggleAdminPanel()" class="text-slate-500 hover:text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
         </div>
-        
-        <div id="guest-list-container" class="space-y-3 max-h-72 overflow-y-auto custom-scroll pr-2">
-            <p class="text-center text-slate-500 text-sm py-8">Carregando lista...</p>
+        <div id="guest-list-container" class="space-y-3 max-h-72 overflow-y-auto custom-scroll pr-2 italic text-slate-500 text-sm">
+            Carregando lista...
         </div>
-
         <div class="pt-4 border-t border-white/10 flex justify-between text-xs font-bold uppercase tracking-widest">
             <span class="text-green-500" id="count-yes">Sim: 0</span>
             <span class="text-red-500" id="count-no">Não: 0</span>
@@ -176,48 +187,53 @@
         import { getAuth, signInAnonymously, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
         import { getFirestore, collection, addDoc, getDocs, query, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
 
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        let user = null;
+        // Inicialização robusta
+        let db, auth, appId, user = null;
         let isAttending = null;
 
-        const initAuth = async () => {
-            try { await signInAnonymously(auth); } catch (e) { console.error(e); }
-        };
+        try {
+            const firebaseConfig = JSON.parse(__firebase_config);
+            appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+            const app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
 
-        onAuthStateChanged(auth, (u) => { user = u; });
-        initAuth();
+            signInAnonymously(auth).catch(console.error);
+            onAuthStateChanged(auth, (u) => { user = u; });
+        } catch (e) {
+            console.error("Erro na inicialização do Firebase:", e);
+        }
 
+        // Vincular funções ao objeto window IMEDIATAMENTE
         window.setRsvp = (status) => {
+            console.log("RSVP selecionado:", status);
             isAttending = status;
             const btnYes = document.getElementById('btnYes');
             const btnNo = document.getElementById('btnNo');
 
+            btnYes.classList.remove('btn-rsvp-active-yes');
+            btnNo.classList.remove('btn-rsvp-active-no');
+
             if (status) {
-                btnYes.classList.add('bg-amber-500/20', 'border-amber-500', 'text-amber-500');
-                btnNo.classList.remove('bg-red-500/20', 'border-red-500', 'text-red-500');
+                btnYes.classList.add('btn-rsvp-active-yes');
             } else {
-                btnNo.classList.add('bg-red-500/20', 'border-red-500', 'text-red-500');
-                btnYes.classList.remove('bg-amber-500/20', 'border-amber-500', 'text-amber-500');
+                btnNo.classList.add('btn-rsvp-active-no');
             }
         };
 
         window.handleConfirmation = async () => {
-            const name = document.getElementById('guestName').value.trim();
+            const nameInput = document.getElementById('guestName');
+            const name = nameInput.value.trim();
             const btn = document.getElementById('submitBtn');
 
             if (!name) { alertBox("Digite o seu nome."); return; }
             if (isAttending === null) { alertBox("Selecione se irá."); return; }
-            if (!user) { alertBox("Conectando..."); return; }
-
+            
             try {
                 btn.disabled = true;
-                btn.innerText = "A guardar...";
+                btn.innerText = "Salvando...";
+
+                if (!db || !user) throw new Error("Firebase não inicializado");
 
                 await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'guests'), {
                     name: name,
@@ -227,19 +243,19 @@
 
                 document.getElementById('rsvp-section').classList.add('hidden');
                 document.getElementById('success-msg').classList.remove('hidden');
-                if (!document.getElementById('admin-panel').classList.contains('hidden')) loadGuestList();
-
+                
             } catch (error) {
+                console.error(error);
                 btn.disabled = false;
                 btn.innerText = "Confirmar Presença";
-                alertBox("Erro ao guardar.");
+                alertBox("Erro ao salvar. Tente novamente.");
             }
         };
 
         window.toggleAdminPanel = async () => {
             const panel = document.getElementById('admin-panel');
             if (panel.classList.contains('hidden')) {
-                const pass = prompt("Palavra-passe do Gabriel:");
+                const pass = prompt("Senha do Gabriel:");
                 if (pass === "30anos") {
                     panel.classList.remove('hidden');
                     loadGuestList();
@@ -254,7 +270,7 @@
 
         async function loadGuestList() {
             const container = document.getElementById('guest-list-container');
-            if (!user) return;
+            if (!db) return;
 
             try {
                 const q = query(collection(db, 'artifacts', appId, 'public', 'data', 'guests'));
@@ -269,7 +285,7 @@
                 guests.sort((a, b) => a.name.localeCompare(b.name));
 
                 if (guests.length === 0) {
-                    container.innerHTML = '<p class="text-center text-slate-500 py-8 italic">A lista está vazia.</p>';
+                    container.innerHTML = '<p class="text-center py-4">Nenhuma resposta.</p>';
                     return;
                 }
 
@@ -289,9 +305,8 @@
                 container.innerHTML = html;
                 document.getElementById('count-yes').innerText = `Sim: ${countYes}`;
                 document.getElementById('count-no').innerText = `Não: ${countNo}`;
-
             } catch (error) {
-                container.innerHTML = '<p class="text-center text-red-500 py-8">Erro de ligação.</p>';
+                container.innerHTML = '<p class="text-center text-red-500 py-4">Erro ao carregar.</p>';
             }
         }
 
