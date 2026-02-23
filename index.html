@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel 30 Anos | Cheers!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212; /* Cinza escuro chumbo */
+            color: #f8fafc;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+            transition: transform 0.2s ease;
+        }
+        .btn-gold:active {
+            transform: scale(0.95);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div class="max-w-md w-full glass-card rounded-3xl overflow-hidden shadow-2xl">
+        <!-- Header Image Area -->
+        <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&q=80&w=800');">
+            <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center">
+                <h1 class="font-serif text-5xl font-bold gold-gradient italic">G30</h1>
+                <p class="text-sm tracking-[0.3em] uppercase mt-2">The Celebration</p>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="p-8 space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl font-serif">Você foi convocado.</h2>
+                <p class="text-slate-400 font-light leading-relaxed">
+                    Chegou a hora de celebrar três décadas de história em grande estilo. Espero por você!
+                </p>
+            </div>
+
+            <!-- Event Details -->
+            <div class="grid grid-cols-1 gap-4">
+                <div class="flex items-center space-x-4 p-3 rounded-xl bg-white/5">
+                    <div class="bg-amber-500/20 p-2 rounded-lg text-amber-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-xs uppercase tracking-wider text-slate-500">Data</p>
+                        <p class="font-semibold">28 de Fevereiro</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-4 p-3 rounded-xl bg-white/5">
+                    <div class="bg-amber-500/20 p-2 rounded-lg text-amber-500">
+                        <svg xmlns="http://www.w3.org/2000/center" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-xs uppercase tracking-wider text-slate-500">Horário</p>
+                        <p class="font-semibold">17:00 Horas</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-4 p-3 rounded-xl bg-white/5">
+                    <div class="bg-amber-500/20 p-2 rounded-lg text-amber-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-xs uppercase tracking-wider text-slate-500">Local</p>
+                        <p class="font-semibold">Belmonte do Touring</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RSVP Form -->
+            <div id="rsvp-section" class="space-y-4 border-t border-white/10 pt-6">
+                <h3 class="text-lg font-serif text-center">R.S.V.P</h3>
+                
+                <div class="space-y-2">
+                    <label class="text-xs text-slate-400 uppercase tracking-widest ml-1">Seu Nome</label>
+                    <input type="text" id="guestName" placeholder="Ex: João Silva" 
+                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:border-amber-500 transition-colors">
+                </div>
+
+                <div class="flex space-x-2">
+                    <button onclick="setRsvp(true)" id="btnYes" class="flex-1 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition-colors">Sim, irei!</button>
+                    <button onclick="setRsvp(false)" id="btnNo" class="flex-1 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition-colors">Não poderei ir</button>
+                </div>
+
+                <button onclick="sendConfirmation()" class="w-full btn-gold text-slate-900 font-bold py-4 rounded-xl shadow-lg uppercase tracking-widest text-sm mt-4">
+                    Confirmar Presença
+                </button>
+            </div>
+
+            <div id="success-msg" class="hidden text-center py-8 space-y-3 animate-bounce">
+                <div class="bg-green-500/20 text-green-500 w-12 h-12 rounded-full flex items-center justify-center mx-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <p class="text-lg font-semibold">Tudo pronto!</p>
+                <p class="text-slate-400 text-sm">Sua resposta foi enviada.</p>
+            </div>
+        </div>
+
+        <div class="p-4 bg-white/5 text-center">
+            <p class="text-[10px] text-slate-500 tracking-[0.2em] uppercase">Gabriel | 30 Anos</p>
+        </div>
+    </div>
+
+    <script>
+        let isAttending = null;
+        const myPhoneNumber = "5521965588222"; 
+
+        function setRsvp(status) {
+            isAttending = status;
+            const btnYes = document.getElementById('btnYes');
+            const btnNo = document.getElementById('btnNo');
+
+            if (status) {
+                btnYes.classList.add('bg-amber-500/20', 'border-amber-500', 'text-amber-500');
+                btnNo.classList.remove('bg-red-500/20', 'border-red-500', 'text-red-500');
+            } else {
+                btnNo.classList.add('bg-red-500/20', 'border-red-500', 'text-red-500');
+                btnYes.classList.remove('bg-amber-500/20', 'border-amber-500', 'text-amber-500');
+            }
+        }
+
+        function sendConfirmation() {
+            const name = document.getElementById('guestName').value.trim();
+
+            if (!name) {
+                alertBox("Por favor, digite seu nome.");
+                return;
+            }
+
+            if (isAttending === null) {
+                alertBox("Por favor, selecione se você irá ou não.");
+                return;
+            }
+
+            const response = isAttending ? "CONFIRMO minha presença" : "infelizmente NÃO PODEREI ir";
+            const message = `Olá Gabriel! Aqui é o *${name}*. Passando para dizer que ${response} ao seu aniversário de 30 anos no Belmonte do Touring! 🥂`;
+            
+            const url = `https://api.whatsapp.com/send?phone=${myPhoneNumber}&text=${encodeURIComponent(message)}`;
+            
+            document.getElementById('rsvp-section').classList.add('hidden');
+            document.getElementById('success-msg').classList.remove('hidden');
+
+            setTimeout(() => {
+                window.open(url, '_blank');
+            }, 1000);
+        }
+
+        function alertBox(msg) {
+            const nameInput = document.getElementById('guestName');
+            nameInput.placeholder = msg;
+            nameInput.classList.add('border-red-500');
+            setTimeout(() => {
+                nameInput.classList.remove('border-red-500');
+                nameInput.placeholder = "Ex: João Silva";
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
