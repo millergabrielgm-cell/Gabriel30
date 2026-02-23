@@ -2,324 +2,172 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Gabriel 30 Anos | Cheers!</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #121212; /* Cinza chumbo */
+            background-color: #0a0a0a;
             color: #f8fafc;
             -webkit-tap-highlight-color: transparent;
         }
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-        .gold-gradient {
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .gold-text {
             background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .btn-gold {
             background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-            transition: all 0.2s ease;
-        }
-        .btn-gold:active {
-            transform: scale(0.96);
-            filter: brightness(1.1);
+            color: #000;
         }
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .custom-scroll::-webkit-scrollbar {
-            width: 4px;
-        }
-        .custom-scroll::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .custom-scroll::-webkit-scrollbar-thumb {
-            background: #d97706;
-            border-radius: 10px;
-        }
-        /* Estilos para estados ativos dos botões RSVP */
-        .btn-rsvp {
-            transition: all 0.2s ease;
-        }
-        .btn-rsvp-active-yes {
-            background-color: rgba(245, 158, 11, 0.2) !important;
-            border-color: #f59e0b !important;
-            color: #f59e0b !important;
-        }
-        .btn-rsvp-active-no {
-            background-color: rgba(239, 68, 68, 0.2) !important;
-            border-color: #ef4444 !important;
-            color: #ef4444 !important;
-        }
+        .rsvp-btn { transition: all 0.2; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .rsvp-btn.active-yes { background: rgba(217, 119, 6, 0.2); border-color: #d97706; color: #fbbf24; }
+        .rsvp-btn.active-no { background: rgba(239, 68, 68, 0.1); border-color: #ef4444; color: #f87171; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4 space-y-6">
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
 
-    <div class="max-w-md w-full glass-card rounded-3xl overflow-hidden shadow-2xl flex flex-col">
-        <!-- Header -->
-        <div class="h-48 bg-cover bg-center relative shrink-0" style="background-image: url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&q=80&w=800');">
+    <div class="max-w-md w-full glass-card rounded-[2rem] overflow-hidden shadow-2xl">
+        <!-- Banner -->
+        <div class="h-44 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&q=80&w=800');">
             <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center">
-                <h1 class="font-serif text-5xl font-bold gold-gradient italic">G30</h1>
-                <p class="text-sm tracking-[0.3em] uppercase mt-2">The Celebration</p>
+                <h1 class="font-serif text-5xl font-bold gold-text italic">G30</h1>
+                <p class="text-[10px] tracking-[0.4em] uppercase text-slate-500 mt-2 italic">The Celebration</p>
             </div>
         </div>
 
-        <!-- Content -->
-        <div class="p-8 space-y-8 flex-1">
+        <!-- Conteúdo -->
+        <div class="p-8 space-y-8">
             <div class="text-center space-y-2">
-                <h2 class="text-2xl font-serif">Você foi convocado.</h2>
-                <p class="text-slate-400 font-light leading-relaxed">
-                    Chegou a hora de celebrar três décadas de história em grande estilo. Espero por você!
-                </p>
+                <h2 class="text-2xl font-serif">Você foi convocado</h2>
+                <p class="text-slate-400 font-light text-sm text-center">Belmonte do Touring | 28/02 às 17h</p>
             </div>
 
-            <!-- Details -->
-            <div class="grid grid-cols-1 gap-4 text-left">
-                <div class="flex items-center space-x-4 p-3 rounded-xl bg-white/5 border border-white/5">
-                    <div class="bg-amber-500/20 p-2 rounded-lg text-amber-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="text-xs uppercase tracking-wider text-slate-500">Data</p>
-                        <p class="font-semibold text-white">28 de Fevereiro</p>
-                    </div>
-                </div>
-
-                <div class="flex items-center space-x-4 p-3 rounded-xl bg-white/5 border border-white/5">
-                    <div class="bg-amber-500/20 p-2 rounded-lg text-amber-500">
-                        <svg xmlns="http://www.w3.org/2000/center" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="text-xs uppercase tracking-wider text-slate-500">Horário</p>
-                        <p class="font-semibold text-white">17:00 Horas</p>
-                    </div>
-                </div>
-
-                <div class="flex items-center space-x-4 p-3 rounded-xl bg-white/5 border border-white/5">
-                    <div class="bg-amber-500/20 p-2 rounded-lg text-amber-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="text-xs uppercase tracking-wider text-slate-500">Local</p>
-                        <p class="font-semibold text-white">Belmonte do Touring</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RSVP Form -->
-            <div id="rsvp-section" class="space-y-4 border-t border-white/10 pt-6">
-                <h3 class="text-lg font-serif text-center">R.S.V.P</h3>
-                
+            <!-- Formulário RSVP -->
+            <div id="form-ui" class="space-y-5">
                 <div class="space-y-2 text-left">
-                    <label class="text-xs text-slate-400 uppercase tracking-widest ml-1">Seu Nome</label>
-                    <input type="text" id="guestName" placeholder="Ex: João Silva" 
-                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:border-amber-500 transition-colors text-white">
+                    <label class="text-[10px] uppercase text-slate-500 ml-1 tracking-widest">Nome Completo</label>
+                    <input type="text" id="guestName" placeholder="Seu nome aqui..." 
+                           class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 outline-none focus:border-amber-500 transition-all text-white">
                 </div>
 
-                <div class="flex space-x-2">
-                    <button id="btnYes" onclick="setRsvp(true)" class="btn-rsvp flex-1 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition-colors">Sim, irei!</button>
-                    <button id="btnNo" onclick="setRsvp(false)" class="btn-rsvp flex-1 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition-colors">Não poderei ir</button>
+                <div class="flex gap-2">
+                    <button id="yBtn" onclick="setOpt(true)" class="rsvp-btn flex-1 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest bg-white/5">eu aceito a convocação</button>
+                    <button id="nBtn" onclick="setOpt(false)" class="rsvp-btn flex-1 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest bg-white/5 text-slate-500">resignar</button>
                 </div>
 
-                <button id="submitBtn" onclick="handleConfirmation()" class="w-full btn-gold text-slate-900 font-bold py-4 rounded-xl shadow-lg uppercase tracking-widest text-sm mt-4">
-                    Confirmar Presença
+                <button id="submitBtn" onclick="submitData()" class="btn-gold w-full py-5 rounded-2xl font-bold uppercase tracking-widest text-xs shadow-lg">
+                    Confirmar na Lista
                 </button>
             </div>
 
-            <div id="success-msg" class="hidden text-center py-8 space-y-3">
-                <div class="bg-green-500/20 text-green-500 w-12 h-12 rounded-full flex items-center justify-center mx-auto">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                </div>
-                <p class="text-lg font-semibold text-white">Tudo pronto!</p>
-                <p class="text-slate-400 text-sm">Sua resposta foi salva na lista do Gabriel.</p>
+            <!-- Mensagem de Sucesso -->
+            <div id="success-ui" class="hidden py-10 text-center space-y-4">
+                <div class="w-12 h-12 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto">✓</div>
+                <h3 class="text-xl font-serif">Confirmado!</h3>
+                <p class="text-slate-400 text-sm">Sua presença está salva na lista.</p>
             </div>
         </div>
 
-        <!-- Footer -->
-        <div class="bg-white/5 p-4 border-t border-white/10 text-center space-y-3">
-            <p class="text-[10px] text-slate-500 tracking-[0.2em] uppercase">Gabriel | 30 Anos</p>
-            <button onclick="toggleAdminPanel()" class="mx-auto flex items-center space-x-1 text-[9px] text-slate-600 uppercase tracking-widest hover:text-amber-500 transition-colors opacity-60">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-                <span>Acesso do Gabriel</span>
+        <!-- Rodapé / Painel Administrativo -->
+        <div class="p-4 bg-black/20 text-center border-t border-white/5">
+            <button onclick="viewList()" class="text-[9px] text-slate-600 uppercase tracking-widest hover:text-amber-500 transition-colors">
+                [ Acesso do Gabriel ]
             </button>
         </div>
     </div>
 
-    <!-- Admin Panel -->
-    <div id="admin-panel" class="hidden max-w-md w-full glass-card rounded-3xl p-6 space-y-4 mb-12 shadow-2xl">
-        <div class="flex justify-between items-center border-b border-white/10 pb-4">
-            <h3 class="font-serif text-xl gold-gradient">Gestão de Convidados</h3>
-            <button onclick="toggleAdminPanel()" class="text-slate-500 hover:text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
+    <!-- Lista de Convidados (Painel Admin) -->
+    <div id="admin-panel" class="hidden max-w-md w-full glass-card rounded-3xl p-6 mt-6 shadow-2xl mb-10">
+        <div class="flex justify-between items-center border-b border-white/10 pb-4 mb-4">
+            <h3 class="font-serif text-lg gold-text">Lista de Convidados</h3>
+            <button onclick="document.getElementById('admin-panel').classList.add('hidden')" class="text-slate-500 text-xs">FECHAR</button>
         </div>
-        <div id="guest-list-container" class="space-y-3 max-h-72 overflow-y-auto custom-scroll pr-2 italic text-slate-500 text-sm">
-            Carregando lista...
-        </div>
-        <div class="pt-4 border-t border-white/10 flex justify-between text-xs font-bold uppercase tracking-widest">
-            <span class="text-green-500" id="count-yes">Sim: 0</span>
-            <span class="text-red-500" id="count-no">Não: 0</span>
+        <div id="guest-list" class="space-y-2 max-h-64 overflow-y-auto pr-2 text-sm text-left">
+            <!-- Dados serão inseridos aqui -->
         </div>
     </div>
 
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
-        import { getAuth, signInAnonymously, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
+        import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
         import { getFirestore, collection, addDoc, getDocs, query, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
 
-        // Inicialização robusta
-        let db, auth, appId, user = null;
-        let isAttending = null;
+        let db, appId, isAttending = null;
 
+        // Inicialização do Firebase
         try {
             const firebaseConfig = JSON.parse(__firebase_config);
             appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
             const app = initializeApp(firebaseConfig);
-            auth = getAuth(app);
+            const auth = getAuth(app);
             db = getFirestore(app);
+            signInAnonymously(auth);
+        } catch (e) { console.warn("Firebase Offline"); }
 
-            signInAnonymously(auth).catch(console.error);
-            onAuthStateChanged(auth, (u) => { user = u; });
-        } catch (e) {
-            console.error("Erro na inicialização do Firebase:", e);
-        }
-
-        // Vincular funções ao objeto window IMEDIATAMENTE
-        window.setRsvp = (status) => {
-            console.log("RSVP selecionado:", status);
-            isAttending = status;
-            const btnYes = document.getElementById('btnYes');
-            const btnNo = document.getElementById('btnNo');
-
-            btnYes.classList.remove('btn-rsvp-active-yes');
-            btnNo.classList.remove('btn-rsvp-active-no');
-
-            if (status) {
-                btnYes.classList.add('btn-rsvp-active-yes');
-            } else {
-                btnNo.classList.add('btn-rsvp-active-no');
-            }
+        // Definir opção de presença
+        window.setOpt = (val) => {
+            isAttending = val;
+            document.getElementById('yBtn').className = val ? 'rsvp-btn flex-1 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest active-yes' : 'rsvp-btn flex-1 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest bg-white/5';
+            document.getElementById('nBtn').className = !val ? 'rsvp-btn flex-1 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest active-no' : 'rsvp-btn flex-1 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest bg-white/5 text-slate-500';
         };
 
-        window.handleConfirmation = async () => {
-            const nameInput = document.getElementById('guestName');
-            const name = nameInput.value.trim();
+        // Submeter dados para a base de dados
+        window.submitData = async () => {
+            const name = document.getElementById('guestName').value.trim();
             const btn = document.getElementById('submitBtn');
+            if(!name || isAttending === null) return alert("Preencha o seu nome e selecione uma opção.");
 
-            if (!name) { alertBox("Digite o seu nome."); return; }
-            if (isAttending === null) { alertBox("Selecione se irá."); return; }
-            
             try {
-                btn.disabled = true;
-                btn.innerText = "Salvando...";
-
-                if (!db || !user) throw new Error("Firebase não inicializado");
-
+                btn.disabled = true; btn.innerText = "A GUARDAR...";
                 await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'guests'), {
-                    name: name,
-                    attending: isAttending,
-                    createdAt: serverTimestamp()
+                    name, attending: isAttending, date: serverTimestamp()
                 });
-
-                document.getElementById('rsvp-section').classList.add('hidden');
-                document.getElementById('success-msg').classList.remove('hidden');
-                
-            } catch (error) {
-                console.error(error);
-                btn.disabled = false;
-                btn.innerText = "Confirmar Presença";
-                alertBox("Erro ao salvar. Tente novamente.");
+                document.getElementById('form-ui').classList.add('hidden');
+                document.getElementById('success-ui').classList.remove('hidden');
+            } catch (e) {
+                alert("Erro ao ligar ao servidor. Tente novamente.");
+                btn.disabled = false; btn.innerText = "Confirmar na Lista";
             }
         };
 
-        window.toggleAdminPanel = async () => {
+        // Visualizar lista de convidados
+        window.viewList = async () => {
+            const pass = prompt("Palavra-passe:");
+            if(pass !== "30anos") return alert("Palavra-passe errada.");
+            
             const panel = document.getElementById('admin-panel');
-            if (panel.classList.contains('hidden')) {
-                const pass = prompt("Senha do Gabriel:");
-                if (pass === "30anos") {
-                    panel.classList.remove('hidden');
-                    loadGuestList();
-                    panel.scrollIntoView({ behavior: 'smooth' });
-                } else if (pass !== null) {
-                    alert("Acesso negado.");
-                }
-            } else {
-                panel.classList.add('hidden');
-            }
-        };
-
-        async function loadGuestList() {
-            const container = document.getElementById('guest-list-container');
-            if (!db) return;
+            const listDiv = document.getElementById('guest-list');
+            panel.classList.remove('hidden');
+            listDiv.innerHTML = "A carregar...";
 
             try {
-                const q = query(collection(db, 'artifacts', appId, 'public', 'data', 'guests'));
-                const querySnapshot = await getDocs(q);
-                
+                const snap = await getDocs(query(collection(db, 'artifacts', appId, 'public', 'data', 'guests')));
                 let html = "";
-                let countYes = 0;
-                let countNo = 0;
-                const guests = [];
-
-                querySnapshot.forEach((doc) => { guests.push(doc.data()); });
-                guests.sort((a, b) => a.name.localeCompare(b.name));
-
-                if (guests.length === 0) {
-                    container.innerHTML = '<p class="text-center py-4">Nenhuma resposta.</p>';
-                    return;
-                }
-
-                guests.forEach((data) => {
-                    const statusClass = data.attending ? 'text-green-500' : 'text-red-500';
-                    const statusText = data.attending ? 'VAI' : 'NÃO VAI';
-                    if (data.attending) countYes++; else countNo++;
-
-                    html += `
-                        <div class="flex justify-between items-center p-3 bg-white/5 rounded-xl border border-white/5">
-                            <span class="font-medium text-white truncate mr-2">${data.name}</span>
-                            <span class="text-[10px] font-bold ${statusClass}">${statusText}</span>
-                        </div>
-                    `;
+                let guests = [];
+                snap.forEach(d => guests.push(d.data()));
+                
+                // Ordenar por nome em memória
+                guests.sort((a,b) => a.name.localeCompare(b.name));
+                
+                guests.forEach(g => {
+                    const color = g.attending ? 'text-amber-500' : 'text-red-500';
+                    html += `<div class="flex justify-between p-3 bg-white/5 rounded-lg border border-white/5">
+                        <span class="truncate">${g.name}</span>
+                        <span class="text-[9px] font-bold ${color}">${g.attending ? 'VAI' : 'NÃO'}</span>
+                    </div>`;
                 });
-
-                container.innerHTML = html;
-                document.getElementById('count-yes').innerText = `Sim: ${countYes}`;
-                document.getElementById('count-no').innerText = `Não: ${countNo}`;
-            } catch (error) {
-                container.innerHTML = '<p class="text-center text-red-500 py-4">Erro ao carregar.</p>';
-            }
-        }
-
-        function alertBox(msg) {
-            const nameInput = document.getElementById('guestName');
-            const old = nameInput.placeholder;
-            nameInput.placeholder = msg;
-            nameInput.classList.add('border-red-500');
-            setTimeout(() => {
-                nameInput.classList.remove('border-red-500');
-                nameInput.placeholder = old;
-            }, 3000);
-        }
+                listDiv.innerHTML = html || "Nenhuma confirmação ainda.";
+            } catch (e) { listDiv.innerHTML = "Erro ao carregar a lista."; }
+        };
     </script>
 </body>
 </html>
